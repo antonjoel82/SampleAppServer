@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server for ultimate resource app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonjoel82/SampleAppServer.git"
+  },
+  "author": "Joel Anton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonjoel82/SampleAppServer/issues"
+  },
+  "homepage": "https://github.com/antonjoel82/SampleAppServer#readme"
+}
