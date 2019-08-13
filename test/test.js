@@ -2,7 +2,7 @@ const assert = require('assert');
 const mongoose = require("mongoose");
 
 const DBTests = require("./db-tests.js")
-const {Tag, User, Resource} = require("../src/schema.js");
+const {User} = require("../src/models/user.js");
 
 const dbUrl = "mongodb://localhost:27017/test";
 
@@ -34,7 +34,7 @@ describe("MongoDB Connection", () => {
 	});
 });
 
-describe("MongoDB Operations", () => {
+describe("MongoDB Single Store / Retrieval", () => {
 	before(done => {
 		mongoose.connect(dbUrl, {useNewUrlParser: true}).catch((err) => console.error(err));
 		const db = mongoose.connection;

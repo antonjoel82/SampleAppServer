@@ -1,4 +1,4 @@
-const {Tag, User, Resource} = require("../src/schema.js");
+const {User} = require("../src/models/user.js");
 
 function testMocha() {
 	return "Testing the test framework #meta";
@@ -8,7 +8,8 @@ function createNewUser() {
 	return new User({
 		email: "joel@gmail.com",
 		username: "joelcore",
-		hash: "sde78y9hdhy938fh9w824fh",
+		hash: "ultimate2019",
+		name: {first: "Joel", last: "CORE" },
 		lastLogin: Date.now(),
 		uploads: [],
 		favs: [],
