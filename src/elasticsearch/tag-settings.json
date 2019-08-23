@@ -1,0 +1,59 @@
+{
+  "settings": {
+    "index": {
+        "number_of_shards": 1, 
+        "number_of_replicas": 1,
+        "query": {
+          "default_field": "label"
+        } 
+    },
+    "analysis": {
+      "analyzer": {
+        "my_analyzer": {
+          "tokenizer": "my_tokenizer",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "my_search_analyzer": {
+          "tokenizer": "lowercase"
+        }
+      },
+      "tokenizer": {
+        "my_tokenizer": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 35,
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "label": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "my_search_analyzer",
+        "boost": 3
+      },
+      "summary": {
+        "type": "text",
+        "analyzer": "standard",
+        "search_analyzer": "standard"
+      },
+      "creator": {
+        "type": "text",
+        "analyzer": "keyword"
+      },
+      "create_date": {
+        "type": "date",
+        "format": "strict_date_optional_time",
+        "index": false
+      }
+    }
+  }
+}

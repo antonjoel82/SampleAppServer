@@ -8,7 +8,7 @@ const ObjectId = Schema.ObjectId;
 
 const UserSchema = new Schema({
   email: { type: String, index: true, unique: true },
-  username: { type: String, index: true, unique: true },
+  username: { type: String, index: true, unique: true, maxlength: 20 },
   hash: { type: String, required: true },
   name: {
     first: String,
@@ -24,6 +24,11 @@ const UserSchema = new Schema({
     date: { type: Date, default: Date.now }
   }]
 });
+
+// fields / projection to prevent hash from being sent to client
+UserSchema.statics.getClientProjection = function () {
+  return '-hash';
+};
 
 UserSchema.methods.comparePassword = function (submittedPass, cb) {
   return bcrypt.compare(submittedPass, this.hash, function (err, isMatch) {

@@ -1,20 +1,21 @@
-const { User } = require('../src/models/user.js');
-
 function testMocha () {
   return 'Testing the test framework #meta';
 }
 
-function createNewUser () {
-  return new User({
+function registerNewUserRequest () {
+  return {
     email: 'joel@gmail.com',
     username: 'joelcore',
-    hash: 'ultimate2019',
-    name: { first: 'Joel', last: 'CORE' },
-    lastLogin: Date.now(),
-    uploads: [],
-    favs: [],
-    ratings: []
-  });
+    password: 'ultimate2019',
+    name: { first: 'Joel', last: 'CORE' }
+  };
+}
+
+function loginUserRequest () {
+  return {
+    login: 'joel@gmail.com',
+    password: 'ultimate2019'
+  };
 }
 
 function saveUser (user, done) {
@@ -23,6 +24,7 @@ function saveUser (user, done) {
 
 module.exports = {
   testMocha,
-  createNewUser,
+  registerNewUserRequest,
+  loginUserRequest,
   saveUser
 };

@@ -4,7 +4,8 @@
   "description": "Server for ultimate resource app",
   "main": "server.js",
   "scripts": {
-    "test": "npx semistandard && mocha",
+    "test": "npx semistandard && mocha --exit --timeout 99999",
+    "test-debug": "mocha --inspect --exit --timeout 99999",
     "start": "node ./src/server.js",
     "startDev": "nodemon ./src/server.js"
   },
@@ -21,12 +22,17 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "cors": "^2.8.5",
+    "elasticsearch": "^16.3.0",
     "express": "^4.17.1",
     "mocha": "^6.2.0",
     "mongodb": "^3.3.0-beta2",
     "mongoose": "^5.6.7"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "dirty-chai": "^2.0.1",
+    "jsdoc": "^3.6.3",
     "nodemon": "^1.19.1",
     "semistandard": "^13.0.1"
   },
@@ -34,6 +40,8 @@
     "node": "10.15.3"
   },
   "standard": {
-    "env": [ "mocha" ]
+    "env": [
+      "mocha"
+    ]
   }
 }
