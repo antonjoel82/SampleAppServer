@@ -1,7 +1,3 @@
-function testMocha () {
-  return 'Testing the test framework #meta';
-}
-
 function registerNewUserRequest () {
   return {
     email: 'joel@gmail.com',
@@ -23,7 +19,6 @@ function saveUser (user, done) {
 }
 
 module.exports = {
-  testMocha,
   registerNewUserRequest,
   loginUserRequest,
   saveUser

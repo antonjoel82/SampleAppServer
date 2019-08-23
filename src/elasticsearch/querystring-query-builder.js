@@ -15,7 +15,7 @@ function QueryStringQuery (objectType) {
   this.index = indexName;
   this.defaultField = defaultField;
   this.fields = searchFields;
-  this.queryStrings = [];
+  this.queryStrings = null;
   this.operator = QueryStringOperators.Default;
   this.docType = docType;
 
@@ -69,6 +69,10 @@ function QueryStringQuery (objectType) {
   };
 
   this.buildQuery = function () {
+    if (!this.getQueryStrings() || this.getQueryStrings().length === 0) {
+      throw new Error('Must supply query strings in order to build a query.');
+    }
+
     let queryCond = '';
     for (let i = 0; i < this.queryStrings.length; i++) {
       queryCond += `(${this.queryStrings[i]})`;

@@ -6,24 +6,13 @@ const expect = chai.expect;
 const chaiHttp = require('chai-http');
 const server = require('../src/server.js');
 
-const DBTests = require('./db-tests.js');
+const DBHelpers = require('./mongo-helpers.js');
 const { User } = require('../src/models/user.js');
 
 const dbUrl = 'mongodb://localhost:27017/test';
 
 chai.use(chaiHttp);
 chai.use(dirtyChai);
-
-describe('Test', () => {
-  describe('testing MochaJS functionality', () => {
-    it('should return \'Testing the test framework #meta\'', (done) => {
-      const test = DBTests.testMocha();
-      expect(test).to.be.a('string');
-      expect(test).to.equal('Testing the test framework #meta');
-      done();
-    });
-  });
-});
 
 describe('MongoDB Connection', () => {
   describe('Test proper DB URL', () => {
@@ -47,17 +36,11 @@ describe('MongoDB Single Store / Retrieval', () => {
     });
   });
 
-  // describe('Save new User', () => {
-  //   it('should successfully save a new user.', (done) => {
-  //     assert.doesNotThrow(() => DBTests.saveUser(DBTests.createNewUser(), done));
-  //   });
-  // });
-
   describe('Register new user', () => {
     it('should successfully save a new user.', (done) => {
       chai.request(server)
         .post('/register')
-        .send(DBTests.registerNewUserRequest())
+        .send(DBHelpers.registerNewUserRequest())
         .end((err, res) => {
           expect(err).to.be.null();
 
@@ -76,7 +59,7 @@ describe('MongoDB Single Store / Retrieval', () => {
     it('retrieves the newly created User with email joel@gmail.com, username joelcore', (done) => {
       chai.request(server)
         .post('/signin')
-        .send(DBTests.loginUserRequest())
+        .send(DBHelpers.loginUserRequest())
         .end((err, res) => {
           expect(err).to.be.null();
 
